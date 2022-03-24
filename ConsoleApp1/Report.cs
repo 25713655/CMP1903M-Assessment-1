@@ -7,11 +7,10 @@ using System.IO;
 
 namespace CMP1903M_Assessment_1_Base_Code
 {
-    /* Public */
-    class Report
+    public class Report
     {
         //Handles the reporting of the analysis
-        //Maybe have different methods for different formats of output?
+        //Maybe have different methods for different formats of output? --Done
         //eg.   public void outputConsole(List<int>)
 
         public void outputConsole(List<int> values)
@@ -24,6 +23,7 @@ namespace CMP1903M_Assessment_1_Base_Code
                                 , values[0], values[1], values[2], values[3], values[4]);
         }
 
+        //ADDITIONAL method
         public void outputFile(List<int> values, List<string> longWords)
         {
             string filePath = "";
@@ -52,22 +52,16 @@ namespace CMP1903M_Assessment_1_Base_Code
                     Console.WriteLine("Invalid directory.");
                     continue;
                 }
+                Console.WriteLine("Output file created at {0}", filePath);
                 break;
             }
 
             //Generate long words text file
-            if (File.Exists(filePath + @"\long_words.txt"))
+            if (longWords.Count != 0)
             {
-                File.Delete(filePath + @"\long_words.txt");
+                LongWords long_words = new LongWords();
+                long_words.outputLongWordsFile(longWords, filePath);
             }
-            using (StreamWriter streamWriter = File.CreateText(filePath + @"\long_words.txt"))
-            {
-                for (int i = 0; i < longWords.Count; i++)
-                {
-                    streamWriter.WriteLine(longWords[i]);
-                }
-            }
-            Console.WriteLine("File created at {0}", filePath);
         }
     }
 }
