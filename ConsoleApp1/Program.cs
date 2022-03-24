@@ -21,7 +21,7 @@ namespace CMP1903M_Assessment_1_Base_Code
             string choice = "";
             while (true)
             {
-                Console.Write("Input mode (1 for manual, 2 for file): ");
+                Console.Write("Input mode (1 for manual, 2 for file, 3 for test data): ");
                 choice = Console.ReadLine();
                 if (choice == "1")
                 {
@@ -50,6 +50,11 @@ namespace CMP1903M_Assessment_1_Base_Code
                         break;
                     }
                     Console.WriteLine("Invalid input.");
+                }
+                else if (choice == "3")
+                {
+                    Test test = new Test();
+                    test.TestMethod();
                 }
                 else
                 {
